@@ -1,0 +1,33 @@
+# d10_p1.py
+
+f = open("d10_input.txt", "r")
+instructions = f.read().split('\n')
+
+# signal strength = cycle number multiplied by the value of x
+
+x = 1
+count = 1
+
+tss = 0
+
+for instruction in instructions:
+  instruction = instruction.split(' ')
+  count+=1
+  if count in [20, 60, 100, 140, 180, 220]:
+    print(count)
+    tss += x * count
+  if instruction[0]=='noop':
+    handled = True
+  else:
+    # load function
+    function = instruction[0]
+    # execute function
+    value = int(instruction[1])
+    x += value
+    count+=1
+    if count in [20, 60, 100, 140, 180, 220]:
+      print(count)
+      tss += x * count
+
+print(f"End: {x} - {count} - {tss}")  
+# 14060

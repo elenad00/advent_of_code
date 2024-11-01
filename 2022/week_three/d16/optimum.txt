@@ -1,0 +1,10 @@
+Valve XK has flow rate=15; tunnels lead to valves CD, JC, TP, UE
+Valve XS has flow rate=17; tunnels lead to valves JC, CE
+Valve NM has flow rate=22; tunnels lead to valves DC, VE, DX
+Valve NC has flow rate=25; tunnels lead to valves UI, VQ
+Valve MW has flow rate=23; tunnel leads to valve PY
+Valve NU has flow rate=10; tunnels lead to valves DU, AM, RN, HS, A
+Valve YH has flow rate=20; tunnels lead to valves VE, CD
+Valve YP has flow rate=19; tunnel leads to valve DX
+Valve ZG has flow rate=11; tunnels lead to valves UI, SH, XO
+Valve WK has flow rate=12; tunnels lead to valves RN, XI, VQ, OV, AH

@@ -1,0 +1,8 @@
+*input.txt
+__pycache__/
+*.code-workspace
+*.cpython-311.pyc
+*data
+.vscode
+*DS_Store*
+*ch*
