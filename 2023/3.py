@@ -67,10 +67,6 @@ What is the sum of all of the gear ratios in your
 
 """
 ## imports
-import sys
-import os
-parent_dir = os.path.dirname(os.path.dirname(__file__))
-sys.path.append(parent_dir)
 from aoc_utils import *
 #  012
 #0123456
@@ -172,7 +168,6 @@ def part_two():
     for point in sps:
         y,x = point
         points=udlr(x,y)
-        adjs = [p for p in points if p!='.' and p!='...']
         up, down, left, right = points
         p = get_points(up,down,left,right,x,y)
         if len(p)==5:
@@ -187,23 +182,6 @@ def part_two():
     print(pointsum)
     return
 
-test_input = [
-    '467..114..',
-    '...*......',
-    '..35..633.',
-    '......#...',
-    '617*......',
-    '.....+.58.',
-    '..592.....',
-    '......755.',
-    '...$.*....',
-    '.664.598..',
-    '120.78....',
-    '...*......',
-    '..........'
-]
-
-input = read_file('3_input.txt')
-#input=test_input
-#part_one() # 521778 (too low) 528799
-part_two() # 80,387,047 (too low) 84,926,685 (too high) 84907174
+input = read_file('data/d3.txt')
+part_one() # 528799
+part_two() # 84907174

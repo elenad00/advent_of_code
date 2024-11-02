@@ -1,6 +1,6 @@
 # d10_p1.py
 
-f = open("d10_input.txt", "r")
+f = open("data/d10.txt", "r")
 instructions = f.read().split('\n')
 
 # signal strength = cycle number multiplied by the value of x

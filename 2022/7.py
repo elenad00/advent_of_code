@@ -1,5 +1,4 @@
-#f = open('d7_test.txt', 'r')
-f = open('d7_input.txt', 'r')
+f = open('data/d7.txt', 'r')
 commands = f.read().split('\n')
 
 dirs = []
@@ -40,11 +39,7 @@ for command in commands:
 if dir_sum > 0:
   dirs[dir_dex].append(dir_sum)
 
-# / = 48381165
-# a = 94853
-# e = 584
-# d = 24933642
-# sum = 95437
+# 95437
 
 dirs = sorted(dirs, key=len)
 
@@ -69,9 +64,4 @@ for dir in condir:
 
 print(over100k)
 
-#1864544 = too high
-#1792222 = 
-#1531819 = incorrect
-#1348742 = incorrect
-#1114066 = incorrect
-#1108734 = incorrect
+# 1792222 

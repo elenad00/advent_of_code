@@ -96,10 +96,6 @@ What is the lowest location number that corresponds to any of the initial seed n
 
 """
 ## imports
-import sys
-import os
-parent_dir = os.path.dirname(os.path.dirname(__file__))
-sys.path.append(parent_dir)
 from aoc_utils import *
 
 def clean_block(block):
@@ -149,13 +145,8 @@ def part_two():
         mini = filter(lambda x:(x<86430059), mini)
         
 
-test_input = read_file('test.txt','\n\n')
-input = read_file('input.txt', '\n\n')
-# input=test_input
-
+input = read_file('data/d4.txt', '\n\n')
 blocks = handle_blocks()
-#part_one() #  261668924
-part_two() # 2988525823 (too high)
-           #   86430059 (too high)
-           #   60295510 (incorrect)
-           #   24261545 
+
+part_one() #  261668924
+part_two() #   24261545 

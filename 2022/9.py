@@ -4,7 +4,7 @@ import numpy as np
 def main () -> None:
     last = lambda in_list: in_list[len(in_list) - 1]
 
-    itxt = open("d9_input.txt", mode='r').read().split()
+    itxt = open("data/d9.txt", mode='r').read().split()
     move = [(d, int(s)) for d, s in zip(itxt[::2], itxt[1::2])]
     dirs = {    'R': np.array([1, 0]), 'L': np.array([-1, 0]), 
                 'U': np.array([0, 1]), 'D': np.array([0, -1]) }

@@ -56,11 +56,9 @@ from aoc_utils import *
 
 ## part one ##
 def part_one():
-    test_input = ['1abc2', 'pqr3stu8vwx', 'a1b2c3d4e5f', 'treb7uchet']
     sum = 0
     for group in input:
         ints = [v for v in group if v in INTS]
-        #print(ints)
         ints = int(ints[0]+ints[-1])
         sum+=ints
     print(sum)
@@ -117,11 +115,10 @@ def part_two():
             i+=1
             
         ints = int(ng[0]+ng[-1])
-        print(ints)
         sum+=ints
     print(sum)
     return
 
-input = read_file('input.txt')
+input = read_file('data/d1.txt')
 part_one() # 55971
 part_two() # 54719

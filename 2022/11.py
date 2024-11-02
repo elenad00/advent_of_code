@@ -1,6 +1,5 @@
 def main():
-  f = open("d11_test.txt",'r')
-  f = open("d11_input.txt",'r')
+  f = open("data/d11.txt",'r')
   monkeys = f.read()
   monkeys = monkeys.split('\n-\n')
 

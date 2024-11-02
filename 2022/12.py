@@ -1,12 +1,7 @@
-# d12_p1
-# reach E in as few steps as possible
-# you can only move places if the elevation is e+1 or <e
-
 x = 0
 y = 0
 
-f = open('d12_test.txt', 'r')
-#f = open('d12_data.txt', 'r')
+f = open('data/d12.txt', 'r')
 heightmap = f.read().split('\n')
 for i in range(len(heightmap)):
   heightmap[i] = list(heightmap[i])
@@ -29,11 +24,6 @@ ym = len(heightmap[0])
 
 E = False
 sc = 1
-
-
-
-
-#print(north, south, east, west)
 
 
 while not E:
