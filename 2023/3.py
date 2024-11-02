@@ -67,9 +67,11 @@ What is the sum of all of the gear ratios in your
 
 """
 ## imports
-from aoc_utils import *
-#  012
-#0123456
+import sys
+import os
+parent_dir = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(parent_dir)
+import aoc_utils
 
 def check_str(pos,d):
     n=1
@@ -77,21 +79,21 @@ def check_str(pos,d):
         if pos=='.' or pos=='...':
             return n
         else:return int(d.strip('.'))
-    if pos[0] in INTS and pos[2] in INTS:
+    if pos[0] in aoc_utils.INTS and pos[2] in aoc_utils.INTS:
         if pos[1] == '.':
             first = int(d[0:3].strip('.'))
             second = int(d[4:].strip('.'))
             return [first, second]
         else:
             n=pos
-    elif pos[0] in INTS:
+    elif pos[0] in aoc_utils.INTS:
         if pos[1]=='.':
             n=d[0:3]
         elif pos[2]=='.':
             n=d[1:4]
         else: 
             n=d[2:5]
-    elif pos[1] in INTS:
+    elif pos[1] in aoc_utils.INTS:
         if pos[0]=='.'and pos[2]=='.':
             n=pos[1]
         elif pos[0]=='.':
@@ -101,7 +103,7 @@ def check_str(pos,d):
         else:
             print('pos: ',pos)
             n=pos
-    elif pos[2] in INTS:
+    elif pos[2] in aoc_utils.INTS:
         if pos[1]=='.':
             n=d[4:]
     else:
@@ -128,13 +130,12 @@ def udlr(x,y):
     right = input[y][x+1]
     return up, down, left, right
 
-def get_points(up,down,left,right,x,y):
+def get_points(up,down,left,right,x,y, list=[]):
     points=[]
     up_p = check_points(up,input[y-1][x-3:x+4])
     down_p= check_points(down,input[y+1][x-3:x+4])
     left_p = check_points(left,input[y][x-3:x].strip('.'))
     right_p = check_points(right,input[y][x+1:x+4].strip('.'))
-    print(up_p+down_p+left_p+right_p)
     points = up_p+down_p+left_p+right_p
     return points
     
@@ -150,13 +151,15 @@ def check_points(dir, coords):
 
 ## part one ##
 def part_one():
-    symbols = get_symbols(input)
+    symbols = aoc_utils.get_symbols(input)
     sps = symbol_points(symbols)
     total=0
     for point in sps:
         y,x = point
         up,down,left,right = udlr(x,y)
-        points = get_points(up,down,left,right,x,y,[0,0,0,0])
+        points = get_points(
+            up,down,left,right,x,y,[0,0,0,0]
+        )
         total+=sum(points)
     print(total)    
     return
@@ -182,6 +185,6 @@ def part_two():
     print(pointsum)
     return
 
-input = read_file('data/d3.txt')
+input = aoc_utils.read_file('data/d3.txt')
 part_one() # 528799
 part_two() # 84907174

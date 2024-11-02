@@ -52,13 +52,13 @@ import sys
 import os
 parent_dir = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(parent_dir)
-from aoc_utils import *
+import aoc_utils
 
 ## part one ##
 def part_one():
     sum = 0
     for group in input:
-        ints = [v for v in group if v in INTS]
+        ints = [v for v in group if v in aoc_utils.INTS]
         ints = int(ints[0]+ints[-1])
         sum+=ints
     print(sum)
@@ -71,7 +71,7 @@ def part_two():
     for group in input:
         ng = []
         for i in range(len(group)):
-            if group[i] in INTS: 
+            if group[i] in aoc_utils.INTS: 
                 ng.append(group[i])
             
             elif group[i] == 'o':
@@ -119,6 +119,6 @@ def part_two():
     print(sum)
     return
 
-input = read_file('data/d1.txt')
+input = aoc_utils.read_file('data/d1.txt')
 part_one() # 55971
 part_two() # 54719

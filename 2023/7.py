@@ -119,7 +119,7 @@ import sys
 import os
 parent_dir = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(parent_dir)
-from aoc_utils import *
+import aoc_utils
 
 def split_cards(hand, part=1):
     hand_types = [
@@ -178,12 +178,10 @@ def part_two():
     )
     print(winnings)
 
-input = read_file('input.txt')
+input = aoc_utils.read_file('data/d7.txt')
 
 
 part_one() 
     # 246795406
 part_two() 
     # 249356515
-    # 249545115 (wrong)
-    # 248836746 (too low)

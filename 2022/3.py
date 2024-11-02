@@ -61,5 +61,5 @@ def part_two():
         sum_common+=val
     print(sum_common)
     
-part_one()
-part_two()
+part_one() # 12
+part_two() # 2525

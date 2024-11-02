@@ -87,7 +87,11 @@ What is the sum of the power of these sets?
 """
 
 ## imports
-import advent_of_code.aoc_utils as aoc_utils
+import sys
+import os
+parent_dir = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(parent_dir)
+import aoc_utils
 
 ## part one ##
 def part_one():

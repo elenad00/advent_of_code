@@ -25,5 +25,5 @@ def part_two():
 with open('data/d4.txt') as file:
     lines = file.read().splitlines()
     
-part_one()
-part_two()
+part_one() # 441
+part_two() # 861

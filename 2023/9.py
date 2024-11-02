@@ -90,7 +90,7 @@ import sys
 import os
 parent_dir = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(parent_dir)
-from aoc_utils import *
+import aoc_utils
 
 def find_differences(line):
     differences = []
@@ -101,17 +101,15 @@ def find_differences(line):
 ## part one ##
 def part_one():
     ex_list = []
-    for line in test:
+    for line in input:
         end = []
         in_line = [int(x) for x in line.split()]
         differences = in_line
         while differences.count(0) != len(differences):
             differences = find_differences(differences)
             end.append(differences[-1])
-        print(sum(end))
         extrapolated = (int(in_line[-1])+sum(end))
         ex_list.append(extrapolated)
-        print('---')
     print(sum(ex_list))
     return
 
@@ -131,16 +129,12 @@ def part_two():
             s = starts[i]-s
         start = in_line[0] - s
         ex_list.append(start)
-        print('---')
     print(sum(ex_list))
     return
 
 # -3, 0, 5
 
-test_input = []
-input = read_file('input.txt')
-test = ['0 3 6 9 12 15',
-'1 3 6 10 15 21',
-'10 13 16 21 30 45']
-#part_one()
-part_two()
+input = aoc_utils.read_file('data/d9.txt')
+
+part_one() # 1637452029
+part_two() # 908

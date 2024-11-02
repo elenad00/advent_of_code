@@ -95,8 +95,11 @@ Process all of the original and copied
     do you end up with?
     
 """
-
-from aoc_utils import *
+import sys
+import os
+parent_dir = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(parent_dir)
+import aoc_utils
 
 # functions
 def get_wins_lines(line):
@@ -148,7 +151,7 @@ def part_two():
         i+=1  
     print(sum(card_runs))
         
-inp_text = read_file('data/d4.txt')
+inp_text = aoc_utils.read_file('data/d4.txt')
 
 part_one() # 25010
 part_two() # 9924412

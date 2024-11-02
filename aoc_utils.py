@@ -1,10 +1,7 @@
+""" This module contains the basic functions for AOC without having
+to rewrite the same code over and over again """
+
 from typing import Any
-
-
-def read_file(file_name: str, delim='\n')->list:
-    f = open(file_name, 'r')
-    content = f.read()
-    return content.split(delim)
 
 INTS = [
     0,1,2,3,4,5,6,7,8,9,
@@ -117,3 +114,7 @@ def get_input(file: str):
     for i in raw_input: input.append([int(v) for v in i])
     return input
     
+def read_file(file_name: str, delim='\n')->list:
+    f = open(file_name, 'r')
+    content = f.read()
+    return content.split(delim)
