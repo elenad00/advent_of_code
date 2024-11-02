@@ -2,7 +2,6 @@ import sys
 import numpy as np
 
 def main () -> None:
-
     last = lambda in_list: in_list[len(in_list) - 1]
 
     itxt = open("d9_input.txt", mode='r').read().split()
