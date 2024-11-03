@@ -14,6 +14,6 @@ def part_one():
 def part_two():
     return
 
-input = aoc_utils.read_file('data/<file>.txt')
+input = aoc_utils.read_file('data/d<day>.txt')
 part_one()
 part_two()
