@@ -80,28 +80,28 @@ def go_fix(rule, page):
 
 def check_rules(rules, page):
     for rule in rules:
-        mid_sum=0
         valid = check_rule(rule,page)
         if not valid:
             page = go_fix(rule, page)
-            print(page)
             valid = check_rules(rules, page)
-            if valid:
-                mid_sum += int(page[int(len(page)/2)])
-                print(mid_sum)
-            else:
-                print('still not valid')
-    return mid_sum
+            if not valid:
+                page = go_fix(rule, page)
+                valid = check_rule(rule,page)
+                print(page, valid)
+            return page
+    return [0]
                     
 def part_two():
     mid_sum = 0
     for page in pages:
-        mid_sum+=check_rules(rules, page)
+        page = check_rules(rules, page)
+        mid_sum+=int(page[int(len(page)/2)])
     print(mid_sum)
     return
 
-input = aoc_utils.read_file('test_data/d5.txt',delim='\n\n')
+input = aoc_utils.read_file(
+    'data/d5.txt',delim='\n\n')
 rules=line_splitter('|', input[0])
 pages=line_splitter(',', input[1])
 part_one() # 5064
-part_two()
+part_two() # 5152
