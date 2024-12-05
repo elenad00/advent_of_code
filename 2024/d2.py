@@ -16,7 +16,8 @@ In the example above, the reports can be found safe or unsafe by checking those 
 So, in this example, 2 reports are safe.
 
 Analyze the unusual data from the engineers. How many reports are safe?
-
+""" 
+"""
 --- Part Two ---
 The Problem Dampener is a reactor-mounted module that lets the reactor safety systems tolerate a single bad level in what would otherwise be a safe report. It's like the bad level never happened!
 
@@ -61,10 +62,8 @@ def check_report(report:str)->int:
     increasing = False if report[0] > report[1] else True
     for v in range(len(report)-1):
         valid, _ = check_value(report[v], report[v+1], increasing)
-        if valid:
-            continue
-        else:
-            return 0
+        if valid: continue
+        else: return 0
     return 1
 
 def trim_report(report: str) -> list:
@@ -97,6 +96,63 @@ def comb_report(raw_report: str):
             v+=1
     return 1
     
+def refine_report(report:str, recheck=0):
+    increasing = False if report[0] > report[1] else True
+    checked = False
+    for v in range(len(report)-1):
+        try:
+            valid, reason = check_value(report[v], report[v+1], increasing)
+        except IndexError:
+            valid, reason = check_value(report[v-1], report[v], increasing)
+        if reason!='' and not checked: 
+            try:
+                valid, reason = check_value(report[v-1], report[v+1], increasing)
+            except IndexError:
+                valid, reason = check_value(report[v-2], report[v-1], increasing)
+            if reason == REASONS[0]:
+                # check to see if the next value is less than -3/3
+                valid, reason = check_value(report[v-1], report[v+1], increasing)
+                if valid:
+                    report.pop(v)
+                    checked = True
+                else:
+                    return 0
+            elif reason == REASONS[1] or reason == REASONS[2]:
+                # check to see if removing val makes the values right
+                if valid:
+                    report.pop(v)
+                    checked = True
+                else:
+                    valid, reason = check_value(report[v-1], report[v+1],increasing)
+                    if valid:
+                        report.pop(v)
+                        checked = True
+                    else:
+                        valid, reason = check_value(report[v-1], report[v+1], not increasing)
+                        if valid:
+                            report.pop(v)
+                            increasing = not increasing
+                            checked = True
+                        else:
+                            return 0
+            elif reason == REASONS[3]:
+                valid, reason = check_value(report[v-1], report[v+1], not increasing)
+                if valid:
+                    report.pop(v)
+                    checked = True
+                else:
+                    return 0
+            else:
+                report.pop(v)
+                checked = True
+    
+    if not recheck:
+        valid = refine_report(report, recheck=1)
+    if not valid:
+        return 0
+    else: 
+        return 1
+    
 def part_one():
     safe = 0
     for report in input:
@@ -107,19 +163,15 @@ def part_one():
 def part_two():
     safe = 0
     for report in input:
-        if not check_report(report):
-            recheck = comb_report(report)
-            if recheck:
-                safe+=1
-            
-        else:
-            print(f"{report} is safe")
-            safe+=1
-        
-        
-    print(safe) # 360 (too low), 376 (wrong), 407 (too high)  
+        res = check_report(report)
+        if not res:
+            report = trim_report(report)
+            res = refine_report(report)
+            print(res)
+        safe+=res
+    print(safe) # 364  
     return
 
-input = aoc_utils.read_file('test_data/d2.txt')
+input = aoc_utils.read_file('data/d2.txt')
 part_one()
 part_two()
