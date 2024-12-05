@@ -16,7 +16,8 @@ Only the four sections
 are real mul instructions. Adding up the result of each instruction produces 161 (2*4 + 5*5 + 11*8 + 8*5).
 
 Scan the corrupted memory for uncorrupted mul instructions. What do you get if you add up all of the results of the multiplications?
-
+""" 
+"""
 --- Part Two ---
 If you handle some of the uncorrupted conditional statements in the program, you might be able to get an even more accurate result.
 
@@ -50,17 +51,22 @@ def part_one(input:str):
     for x, y in search_res:
         sum+=int(x)*int(y)
     print(sum) # 175700056
-    return
+    return sum
 
 def part_two(input: str):
-    stops = re.findall(r"don't\(\).*?do\(\)", input)
-    for stop in stops:
-        input = input.replace(stop, '', 1)
-        print(len(input))
-    part_one(input) # 83524390 too high
+    count = 0
+    input = re.findall(r"do\(\).*?don't\(\)", input)
+    for ret in input:
+        print(len(ret))
+        count += part_one(ret)
+    print(count)
+    # 128096826
+    # 175700056
+    # 83524390 too high
+    # 71668682
     return
 
 input = aoc_utils.read_file('test_data/d3.txt')[0]
-part_one(input)
-input = aoc_utils.read_file('data/d3.txt')[0]
+# part_one(input)
+input = aoc_utils.read_file('data/d3.txt', delim='\n\n')
 part_two(input)

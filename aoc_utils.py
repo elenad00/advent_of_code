@@ -50,6 +50,8 @@ def read_file(file_name: str, delim='\n', listify=False, list_delim=False)->list
     f = open(file_name, 'r')
     content = f.read()
     content = content.split(delim)
+    if len(content)==1:
+        content=str(content)
     if listify:
         content = [c.split(list_delim) for c in content] if list_delim else [list(c) for c in content]
         return content
