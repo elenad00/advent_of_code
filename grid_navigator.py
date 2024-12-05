@@ -80,16 +80,9 @@ class Grid_Navigator():
             current_val = self.get_position_value(current_coords)
             if current_val:
                 ret.append(current_val)
-            else:
-                print(
-                    f"Cannot add {current_coords} due to indexing err, got as"
-                    f" far as {ret} on move {c}"
-                )
             success = self.move_direction(direction)
             if c<count-1:
                 if not success:
-                    print(f"Cannot move in direction {direction}, got as far as "
-                        f"{ret} on move {c}")
                     return None, None
             coords.append(current_coords)
         return [''.join(ret), coords]

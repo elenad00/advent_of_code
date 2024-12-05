@@ -18,7 +18,8 @@ In this word search, XMAS occurs a total of 18 times.
     .X.X.XMASX
 Take a look at the Elf's word search. 
 How many times does XMAS appear?
-
+""" 
+"""
 --- Part Two ---
 You're supposed to find two MAS in the shape of an X. One way to achieve that is like this:
     M.S
@@ -74,16 +75,14 @@ def check_for_xmas() -> int:
         wordsearch.y = y
         ret, c = wordsearch.traverse_grid(dir, 4)
         if ret == 'XMAS':
-            print(f"added {ret} at {x},{y} with dir {dir}")
             xmas_count+=1
     return xmas_count
 
-def check_for_mas() -> int:
-    mas_count = 0
+def check_for_mas() -> list:
     directions = []
     x = wordsearch.x
     y = wordsearch.y
-    all_mas_coords = []
+    mas_middles = []
     around = wordsearch.check_around()
     for v in range(len(around)):
         if around[v]=='A': 
@@ -94,40 +93,35 @@ def check_for_mas() -> int:
             wordsearch.y = y
             ret, coords = wordsearch.traverse_grid(dir, 3)
             if ret == 'MAS':
-                print(f"added {ret} at {x},{y} with dir {dir}")
-                all_mas_coords.append(coords)
-                mas_count+=1
-    return mas_count, all_mas_coords
+                mas_middles.append((coords[1][0], coords[1][1]))
+    return mas_middles
 
 def part_one():
-    for line in wordsearch.grid: print(line)
-    xmas_count = 0
-    for x in range(wordsearch.height):
-        for y in range(wordsearch.width):
-            if wordsearch.grid[x][y] == 'X':
-                wordsearch.x = x
-                wordsearch.y = y
-                xmas_count+=check_for_xmas()
+    for line in wordsearch.grid: 
+        xmas_count = 0
+        for x in range(wordsearch.height):
+            for y in range(wordsearch.width):
+                if wordsearch.grid[x][y] == 'X':
+                    wordsearch.x = x
+                    wordsearch.y = y
+                    xmas_count+=check_for_xmas()
     print(xmas_count)
     return
 
 def part_two():
-    for line in wordsearch.grid: print(line)
-    mas_count = 0
-    all_mas_coords = []
-    for x in range(wordsearch.height):
-        for y in range(wordsearch.width):
-            if wordsearch.grid[x][y] == 'M':
-                wordsearch.x = x
-                wordsearch.y = y
-                mc, mas_coords=check_for_mas()
-                mas_count+=mc
-                if mas_coords!=[]:
-                    all_mas_coords+=mas_coords
-    print(all_mas_coords)
-    print(mas_count)
+    for line in wordsearch.grid: 
+        mas_middles = []
+        for x in range(wordsearch.height):
+            for y in range(wordsearch.width):
+                if wordsearch.grid[x][y] == 'M':
+                    wordsearch.x = x
+                    wordsearch.y = y
+                    mas_middles+=check_for_mas()
+
+    dupes = [m for m in mas_middles if mas_middles.count(m) == 2]
+    print(len(set(dupes)))
     return
 
-wordsearch = grid_navigator.Grid_Navigator("test_data/d4.txt")
+wordsearch = grid_navigator.Grid_Navigator("data/d4.txt")
 part_one() # 2642
-part_two()
+part_two() # 1974
