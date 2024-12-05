@@ -56,3 +56,5 @@ def read_file(file_name: str, delim='\n', listify=False, list_delim=False)->list
     else:
         return content
     
+def split_line(content, list_delim='\n'):
+    return [c.split(list_delim) for c in content] if list_delim else [list(c) for c in content]
